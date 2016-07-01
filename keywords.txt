@@ -1,0 +1,42 @@
+#######################################
+# Syntax Coloring Map CC1101
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+CC1101  KEYWORD1
+CCPACKET KEYWORD1
+CARRIER_FREQ  KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+init	KEYWORD2
+reset KEYWORD2
+wakeUp KEYWORD2
+setSyncWord KEYWORD2
+setDevAddress KEYWORD2
+setCarrierFreq KEYWORD2
+setChannel KEYWORD2
+setRxState KEYWORD2
+setPowerDownState KEYWORD2
+sendData KEYWORD2
+receiveData KEYWORD2
+disableAddressCheck KEYWORD2
+
+#######################################
+# Atributes (KEYWORD2)
+#######################################
+carrierFreq KEYWORD2
+channel KEYWORD2
+syncWord KEYWORD2
+devAddress KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+CFREQ_868 LITERAL1
+CFREQ_915 LITERAL1
+CFREQ_433 LITERAL1
+CFREQ_918 LITERAL1
