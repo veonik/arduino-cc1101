@@ -51,11 +51,11 @@
 
 #else
 
-#define SPI_SS CC1101_SPI_SS     // PB2 = SPI_SS
+#define SPI_SS   SS              // PB2 = SPI_SS
 #define SPI_MOSI MOSI            // PB3 = MOSI
 #define SPI_MISO MISO            // PB4 = MISO
 #define SPI_SCK  SCK             // PB5 = SCK
-#define GDO0 CC1101_GDO0         // PD2 = INT0
+#define GDO0     2               // PD2 = INT0
 
 #define PORT_SPI_MISO  PINB
 #define BIT_SPI_MISO  4
