@@ -38,7 +38,7 @@
 #define SPI_MOSI 51     // PB2 = MOSI
 #define SPI_MISO 50     // PB3 = MISO
 #define SPI_SCK  52     // PB1 = SCK
-#define GDO0     2      // PD4 = INT4
+#define GDO0     19     // PD2 = INT2
 
 #define PORT_SPI_MISO  PINB
 #define BIT_SPI_MISO   3
@@ -46,8 +46,8 @@
 #define PORT_SPI_SS  PORTB
 #define BIT_SPI_SS   0
 
-#define PORT_GDO0  PINE
-#define BIT_GDO0   4
+#define PORT_GDO0  PIND
+#define BIT_GDO0   2
 
 #else
 
