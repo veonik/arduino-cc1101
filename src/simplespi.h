@@ -49,6 +49,23 @@
 #define PORT_GDO0  PIND
 #define BIT_GDO0   2
 
+#elif defined(__MK64FX512__)
+// Teensy 3.5
+#define SPI_SS   10              // PC4 = SPI_SS
+#define SPI_MOSI 11              // PC6 = MOSI
+#define SPI_MISO 12              // PC7 = MISO
+#define SPI_SCK  13              // PC5 = SCK
+#define GDO0     9               // PC3 = INT9
+
+#define PORT_SPI_MISO  GPIOC_PDIR
+#define BIT_SPI_MISO  7
+
+#define PORT_SPI_SS  GPIOC_PDOR
+#define BIT_SPI_SS   4
+
+#define PORT_GDO0  GPIOC_PDIR
+#define BIT_GDO0  3
+
 #else
 
 #define SPI_SS   SS              // PB2 = SPI_SS
