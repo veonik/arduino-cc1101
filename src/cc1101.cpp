@@ -420,11 +420,16 @@ bool CC1101::sendData(CCPACKET packet)
   // Enter RX state
   setRxState();
 
+  int tries = 0;
   // Check that the RX state has been entered
-  while (((marcState = readStatusReg(CC1101_MARCSTATE)) & 0x1F) != 0x0D)
+  while (tries++ < 1000 && ((marcState = readStatusReg(CC1101_MARCSTATE)) & 0x1F) != 0x0D)
   {
     if (marcState == 0x11)        // RX_OVERFLOW
       flushRxFifo();              // flush receive queue
+  }
+  if (tries >= 1000) {
+    // TODO: MarcState sometimes never enters the expected state; this is a hack workaround.
+    return false;
   }
 
   delayMicroseconds(500);
