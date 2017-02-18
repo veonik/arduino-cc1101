@@ -27,7 +27,7 @@
 #define _CC1101_H
 
 #include <Arduino.h>
-#include "simplespi.h"
+#include <SPI.h>
 #include "ccpacket.h"
 
 /**
@@ -51,6 +51,8 @@ enum RFSTATE
   RFSTATE_RX,
   RFSTATE_TX
 };
+
+#define GDO0 D2
 
 /**
  * Working modes
@@ -320,10 +322,6 @@ enum RFSTATE
 class CC1101
 {
   private:
-    /**
-     * Atmega's SPI interface
-     */
-    SIMPLESPI spi;
 
     /**
      * writeBurstReg
