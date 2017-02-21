@@ -18,4 +18,4 @@ Download a zip of this repository, then include it from the Arduino IDE.
 Usage
 -----
 
-Coming soon.
+See [examples/example.ino](examples/example.ino) for an example. This example can be used on both devices, and will periodically send `hello world` while printing out details of any received packets.
