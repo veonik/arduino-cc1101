@@ -2,6 +2,14 @@
 #include <cc1101.h>
 #include <ccpacket.h>
 
+// Attach CC1101 pins to their corresponding SPI pins
+// Uno pins:
+// CSN (SS) => 10
+// MOSI => 11
+// MISO => 12
+// SCK => 13
+// GD0 => The correct INT0 pin for your platform (defined below this)
+
 #if defined(__AVR_ATmega2560__) || defined(__AVR_ATmega1280__)
 #define CC1101Interrupt 4 // Pin 19
 #elif defined(__MK64FX512__)
