@@ -8,15 +8,18 @@
 // MOSI => 11
 // MISO => 12
 // SCK => 13
-// GD0 => The correct INT0 pin for your platform (defined below this)
+// GD0 => A valid interrupt pin for your platform (defined below this)
 
 #if defined(__AVR_ATmega2560__) || defined(__AVR_ATmega1280__)
 #define CC1101Interrupt 4 // Pin 19
+#define CC1101_GDO0 19
 #elif defined(__MK64FX512__)
 // Teensy 3.5
 #define CC1101Interrupt 9 // Pin 9
+#define CC1101_GDO0 9
 #else
 #define CC1101Interrupt 0 // Pin 2
+#define CC1101_GDO0 2
 #endif
 
 CC1101 radio;
@@ -71,11 +74,11 @@ void loop() {
     if (packetWaiting) {
         detachInterrupt(CC1101Interrupt);
         packetWaiting = false;
-        Serial.println(F("Received packet..."));
         CCPACKET packet;
         if (radio.receiveData(&packet) > 0) {
+            Serial.println(F("Received packet..."));
             if (!packet.crc_ok) {
-                Serial.println("crc not ok");
+                Serial.println(F("crc not ok"));
             }
             Serial.print(F("lqi: "));
             Serial.println(lqi(packet.lqi));

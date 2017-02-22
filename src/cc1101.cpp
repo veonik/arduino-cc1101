@@ -29,13 +29,13 @@
  * Macros
  */
 // Select (SPI) CC1101
-#define cc1101_Select()  bitClear(PORT_SPI_SS, BIT_SPI_SS)
+#define cc1101_Select()  digitalWrite(SS, LOW)
 // Deselect (SPI) CC1101
-#define cc1101_Deselect()  bitSet(PORT_SPI_SS, BIT_SPI_SS)
+#define cc1101_Deselect()  digitalWrite(SS, HIGH)
 // Wait until SPI MISO line goes low
-#define wait_Miso()  while(bitRead(PORT_SPI_MISO, BIT_SPI_MISO))
+#define wait_Miso()  while(digitalRead(MISO)>0)
 // Get GDO0 pin state
-#define getGDO0state()  bitRead(PORT_GDO0, BIT_GDO0)
+#define getGDO0state()  digitalRead(CC1101_GDO0)
 // Wait until GDO0 line goes high
 #define wait_GDO0_high()  while(!getGDO0state())
 // Wait until GDO0 line goes low
@@ -84,8 +84,8 @@ void CC1101::writeReg(byte regAddr, byte value)
 {
   cc1101_Select();                      // Select CC1101
   wait_Miso();                          // Wait until MISO goes low
-  spi.send(regAddr);                    // Send register address
-  spi.send(value);                      // Send value
+  SPI.transfer(regAddr);                // Send register address
+  SPI.transfer(value);                  // Send value
   cc1101_Deselect();                    // Deselect CC1101
 }
 
@@ -105,10 +105,10 @@ void CC1101::writeBurstReg(byte regAddr, byte* buffer, byte len)
   addr = regAddr | WRITE_BURST;         // Enable burst transfer
   cc1101_Select();                      // Select CC1101
   wait_Miso();                          // Wait until MISO goes low
-  spi.send(addr);                       // Send register address
+  SPI.transfer(addr);                   // Send register address
   
   for(i=0 ; i<len ; i++)
-    spi.send(buffer[i]);                // Send value
+    SPI.transfer(buffer[i]);            // Send value
 
   cc1101_Deselect();                    // Deselect CC1101  
 }
@@ -124,7 +124,7 @@ void CC1101::cmdStrobe(byte cmd)
 {
   cc1101_Select();                      // Select CC1101
   wait_Miso();                          // Wait until MISO goes low
-  spi.send(cmd);                        // Send strobe command
+  SPI.transfer(cmd);                    // Send strobe command
   cc1101_Deselect();                    // Deselect CC1101
 }
 
@@ -146,8 +146,8 @@ byte CC1101::readReg(byte regAddr, byte regType)
   addr = regAddr | regType;
   cc1101_Select();                      // Select CC1101
   wait_Miso();                          // Wait until MISO goes low
-  spi.send(addr);                       // Send register address
-  val = spi.send(0x00);                 // Read result
+  SPI.transfer(addr);                   // Send register address
+  val = SPI.transfer(0x00);             // Read result
   cc1101_Deselect();                    // Deselect CC1101
 
   return val;
@@ -169,9 +169,9 @@ void CC1101::readBurstReg(byte * buffer, byte regAddr, byte len)
   addr = regAddr | READ_BURST;
   cc1101_Select();                      // Select CC1101
   wait_Miso();                          // Wait until MISO goes low
-  spi.send(addr);                       // Send register address
+  SPI.transfer(addr);                   // Send register address
   for(i=0 ; i<len ; i++)
-    buffer[i] = spi.send(0x00);         // Read result byte by byte
+    buffer[i] = SPI.transfer(0x00);     // Read result byte by byte
   cc1101_Deselect();                    // Deselect CC1101
 }
 
@@ -191,7 +191,7 @@ void CC1101::reset(void)
   cc1101_Select();                      // Select CC1101
 
   wait_Miso();                          // Wait until MISO goes low
-  spi.send(CC1101_SRES);                // Send reset command strobe
+  SPI.transfer(CC1101_SRES);            // Send reset command strobe
   wait_Miso();                          // Wait until MISO goes low
 
   cc1101_Deselect();                    // Deselect CC1101
@@ -284,9 +284,9 @@ void CC1101::init(uint8_t freq, uint8_t mode)
 {
   carrierFreq = freq;
   workMode = mode;
-  
-  spi.init();                           // Initialize SPI interface
-  pinMode(GDO0, INPUT);                 // Config GDO0 as input
+  Serial.println(CC1101_GDO0);
+  SPI.begin();                          // Initialize SPI interface
+  pinMode(CC1101_GDO0, INPUT);          // Config GDO0 as input
 
   reset();                              // Reset CC1101
 
