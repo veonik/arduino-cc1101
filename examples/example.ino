@@ -103,7 +103,8 @@ void loop() {
         lastSend = now;
         const char *message = "hello world";
         CCPACKET packet;
-        packet.length = strlen(message);
+        // We also need to include the 0 byte at the end of the string
+        packet.length = strlen(message)  + 1;
         strncpy((char *) packet.data, message, packet.length);
 
         radio.sendData(packet);
