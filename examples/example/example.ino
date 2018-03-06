@@ -41,6 +41,7 @@ void setup() {
     radio.disableAddressCheck();
     radio.setTxPowerAmp(PA_LongDistance);
 
+    Serial.begin(9600);
     Serial.print(F("CC1101_PARTNUM "));
     Serial.println(radio.readReg(CC1101_PARTNUM, CC1101_STATUS_REGISTER));
     Serial.print(F("CC1101_VERSION "));
