@@ -284,6 +284,7 @@ void CC1101::init(uint8_t freq, uint8_t mode)
 {
   carrierFreq = freq;
   workMode = mode;
+  pinMode(SS, OUTPUT);					             // Make sure that the SS Pin is declared as an Output
   SPI.begin();                          // Initialize SPI interface
   pinMode(CC1101_GDO0, INPUT);          // Config GDO0 as input
 
