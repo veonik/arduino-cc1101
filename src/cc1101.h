@@ -52,7 +52,11 @@ enum RFSTATE
   RFSTATE_TX
 };
 
+#ifdef ESP32
+#define CC1101_GDO0 34   // 34 input interrupt pin, can be changed
+#else
 #define CC1101_GDO0 2   // GDO0 input interrupt pin
+#endif 
 
 /**
  * Working modes
