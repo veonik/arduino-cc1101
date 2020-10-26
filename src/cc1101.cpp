@@ -361,10 +361,10 @@ void CC1101::setCarrierFreq(byte freq)
 {
   switch(freq)
   {
-    case CFREQ_915:
-      writeReg(CC1101_FREQ2,  CC1101_DEFVAL_FREQ2_915);
-      writeReg(CC1101_FREQ1,  CC1101_DEFVAL_FREQ1_915);
-      writeReg(CC1101_FREQ0,  CC1101_DEFVAL_FREQ0_915);
+    case CFREQ_900:
+      writeReg(CC1101_FREQ2,  CC1101_DEFVAL_FREQ2_900);
+      writeReg(CC1101_FREQ1,  CC1101_DEFVAL_FREQ1_900);
+      writeReg(CC1101_FREQ0,  CC1101_DEFVAL_FREQ0_900);
       break;
     case CFREQ_433:
       writeReg(CC1101_FREQ2,  CC1101_DEFVAL_FREQ2_433);
