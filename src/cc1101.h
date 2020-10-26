@@ -36,7 +36,7 @@
 enum CFREQ
 {
   CFREQ_868 = 0,
-  CFREQ_915,
+  CFREQ_900,
   CFREQ_433,
   CFREQ_918,
   CFREQ_LAST
@@ -232,10 +232,10 @@ enum RFSTATE
 #define CC1101_DEFVAL_FREQ2_868  0x21        // Frequency Control Word, High Byte
 #define CC1101_DEFVAL_FREQ1_868  0x62        // Frequency Control Word, Middle Byte
 #define CC1101_DEFVAL_FREQ0_868  0x76        // Frequency Control Word, Low Byte
-// Carrier frequency = 902 MHz
-#define CC1101_DEFVAL_FREQ2_915  0x22        // Frequency Control Word, High Byte
-#define CC1101_DEFVAL_FREQ1_915  0xB1        // Frequency Control Word, Middle Byte
-#define CC1101_DEFVAL_FREQ0_915  0x3B        // Frequency Control Word, Low Byte
+// Carrier frequency = 900 MHz
+#define CC1101_DEFVAL_FREQ2_900  0x22        // Frequency Control Word, High Byte
+#define CC1101_DEFVAL_FREQ1_900  0x9D        // Frequency Control Word, Middle Byte
+#define CC1101_DEFVAL_FREQ0_900  0x88        // Frequency Control Word, Low Byte
 // Carrier frequency = 918 MHz
 #define CC1101_DEFVAL_FREQ2_918  0x23        // Frequency Control Word, High Byte
 #define CC1101_DEFVAL_FREQ1_918  0x4E        // Frequency Control Word, Middle Byte
