@@ -28,7 +28,7 @@ byte syncWord[2] = {199, 10};
 bool packetWaiting;
 
 unsigned long lastSend = 0;
-unsigned int sendDelay = 5000;
+unsigned int sendDelay = 0;
 
 void messageReceived() {
     packetWaiting = true;
@@ -37,7 +37,7 @@ void messageReceived() {
 void setup() {
     radio.init();
     radio.setSyncWord(syncWord);
-    radio.setCarrierFreq(CFREQ_433);
+    radio.setCarrierFreq(CFREQ_900);
     radio.disableAddressCheck();
     radio.setTxPowerAmp(PA_LongDistance);
 
